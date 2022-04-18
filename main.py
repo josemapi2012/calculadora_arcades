@@ -1,4 +1,4 @@
-#Importes
+#Import
 from sys import exit
 #Variables
 promp = "> "
@@ -6,10 +6,6 @@ global maquina
 precio_base = input("Precio Base: ")
 float_pb = float(precio_base)
 tipo_maquina = input("Que tipo de maquina quieres: \n 1.Low Boy\n 2.Big Arcade\n 3.Bartop\n 4.Arcade Pared\n"+promp)
-
-#Variables accesorios
-
-
 
 #Funciones
 def tipomaquina():
@@ -30,8 +26,6 @@ def tipomaquina():
         print("No existe esta configuración.")
         exit(0)
 
-#Funciones accesorios
-
 #Funcion para determinar el  joystick
 def joystick():
     global joystick
@@ -46,16 +40,50 @@ def joystick():
         print("No seleccionaste ningun joystick")
         exit(0)
     return  joystick
+
 #Funcion para determinar el monitor
 def monitor(): #poner para que ponga los precios segun el tamaño que falta
     global maquina
-    global monitor
-    if maquina == ["Low Boy","Bartop","Arcade Pared"]:
-       monitor = input("Selecciona el tamaño de monitor deseado: \n1. 17\'\n2. 19\'"+promp)
-       return monitor
+    global precio_monitor
+    if maquina == ("Low Boy" or "Bartop" or "Arcade Pared"):
+       monitor = input("Selecciona el tamaño de monitor deseado: \n1. 17\'\n2. 19\'\n"+promp)
+       if monitor == "1":
+           precio_monitor = 0
+       elif monitor == "2":
+           precio_monitor = 34.50
+       else:
+           print("No has seleccionado una opcion valida.")
+           exit(0)
+    elif maquina == "Bartop":
+       monitor = input("Selecciona el tamaño de monitor deseado: \n1. 17\'\n2. 19\'\n"+promp)
+       if monitor == "1":
+           precio_monitor = 0
+       elif monitor == "2":
+           precio_monitor = 34.50
+       else:
+           print("No has seleccionado una opcion valida.")
+           exit(0)
+
+    elif maquina == "Arcade Pared":
+       monitor = input("Selecciona el tamaño de monitor deseado: \n1. 17\'\n2. 19\'\n"+promp)
+       if monitor == "1":
+           precio_monitor = 0
+       elif monitor == "2":
+           precio_monitor = 34.50
+       else:
+           print("No has seleccionado una opcion valida.")
+           exit(0)
+
     elif maquina == "Big Arcade":
-        monitor = input("Selecciona el tamaño de monitor deseado: \n1. 19\'\n2. 22\'"+promp)
-        return monitor
+        monitor = input("Selecciona el tamaño de monitor deseado: \n1. 19\'\n2. 22\'\n"+promp)
+        if monitor == "1":
+            precio_monitor = 34.50
+        elif monitor == "2":
+            precio_monitor = 57.50
+        else:
+            print("No has seleccionado una opcion valida.")
+            exit(0)
+
     else:
         print("No seleccionaste ningun monitor")
         exit(0)
@@ -142,49 +170,43 @@ def posavasos():
         print("No has seleccionado una opcion valida.")
         exit(0)
 
-
-
-
-
+#Funcion para calcular los precios
 def precios():
     #si es low boy
     if maquina == "Low Boy":
         joystick()
-        #monitor()
+        monitor()
         marquesina()
         sistema()
         ruedas()
         armarios()
         monedero()
         posavasos()
-        print("El total es: "+float_pb+joystick+sistema+marquesinas+ruedas+armario+monedero+posavasos) #falta poner el monitor
-        #print(float_pb+joystick+sistema+marquesina+ruedas+armario+monedero+posavasos)
-
+        print(f"El precio final es: {float_pb+joystick+precio_monitor+sistema+marquesinas+ruedas+armario+monedero+posavasos} €") #falta poner monitor en la suma
     elif maquina == "Big Arcade":
-        "a"
-        #joystick
-        #monitor 19/22
-        #marquesina
-        #sistema
-        #ruedas
-        #armario
-        #monedero
-        #posavasos
+        joystick()
+        monitor()
+        marquesina()
+        sistema()
+        ruedas()
+        armarios()
+        monedero()
+        posavasos()
+        print(f"El precio final es: {float_pb+joystick+precio_monitor+sistema+marquesinas+ruedas+armario+monedero+posavasos} €")
     elif maquina == "Bartop":
-        "a"
-        #joystick
-        #Monitor
-        #Marquesina
-        #Sistema
+        joystick()
+        monitor()
+        marquesina()
+        sistema()
+        print(f"El precio final es: {float_pb+joystick+precio_monitor+marquesinas+sistema} €")
     elif maquina == "Arcade Pared":
-        "a"
-        #Joystick
-        #Monitor
-        #Sistema
+        joystick()
+        monitor()
+        sistema() 
+        print(f"El precio final es: {float_pb+joystick+precio_monitor+sistema} €")
     else:
-        "a"
+        print("Hubo un error intentalo más tarde")
 
 if __name__ == "__main__":
     tipomaquina()
     precios()
-    #print(precio_base+joystick+monitor+sistema+marquesina+ruedas+armario+monedero+posavasos)
