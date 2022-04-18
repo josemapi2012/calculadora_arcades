@@ -157,7 +157,7 @@ def precios():
         armarios()
         monedero()
         posavasos()
-        print("El total es: "+float_pb+joystick+sistema+marquesinas+ruedas+armario+monedero+posavasos)
+        print("El total es: "+float_pb+joystick+sistema+marquesinas+ruedas+armario+monedero+posavasos) #falta poner el monitor
         #print(float_pb+joystick+sistema+marquesina+ruedas+armario+monedero+posavasos)
 
     elif maquina == "Big Arcade":
